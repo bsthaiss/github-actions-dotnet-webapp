@@ -1,0 +1,22 @@
+name: Workflow GitHub - Install .NET
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *'  # hora
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Instala .NET e verifica a versão dele
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dotnet-sdk-8.0
+          dotnet --version
